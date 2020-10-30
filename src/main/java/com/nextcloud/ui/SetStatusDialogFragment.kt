@@ -213,6 +213,7 @@ class SetStatusDialogFragment :
 
         clearStatus.setTextColor(ThemeUtils.primaryColor(context, true))
         ThemeUtils.colorPrimaryButton(setStatus, context)
+        ThemeUtils.themeEditText(context, customStatusInput, false)
     }
 
     private fun setClearStatusAfterValue(item: Int) {
