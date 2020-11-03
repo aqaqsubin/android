@@ -47,10 +47,10 @@ class TrashbinLocalRepository(val testCase: TrashbinActivityIT.TestCase) : Trash
                 val files = ArrayList<Any>()
                 files.add(
                     TrashbinFile(
-                        "test.md",
-                        "text/markdown",
-                        "/trashbin/test.md",
-                        "subFolder/test.md",
+                        "test.jpg",
+                        "image/jpeg",
+                        "/trashbin/test.jpg",
+                        "subFolder/test.jpg",
                         1395847838, // random date
                         1395847908 // random date
                     )
