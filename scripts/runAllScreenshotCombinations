@@ -22,7 +22,7 @@ do
     if [[ $1 = "noCI" ]]; then
         ./gradlew --console plain gplayDebugExecuteScreenshotTests \
         $record \
-        -Pandroid.testInstrumentationRunnerArguments.annotation=com.owncloud.android.utils.ScreenshotTest \
+        -Pandroid.testInstrumentationRunnerArguments.annotation=com.owncloud.android.utils.ScreenshotTest2 \
         -Pandroid.testInstrumentationRunnerArguments.COLOR="$color" \
         -Pandroid.testInstrumentationRunnerArguments.DARKMODE="$darkMode" \
         $classMethod </dev/null > /dev/null
@@ -32,7 +32,7 @@ do
     else
         ./gradlew --console plain gplayDebugExecuteScreenshotTests \
         $record \
-        -Pandroid.testInstrumentationRunnerArguments.annotation=com.owncloud.android.utils.ScreenshotTest \
+        -Pandroid.testInstrumentationRunnerArguments.annotation=com.owncloud.android.utils.ScreenshotTest2 \
         -Pandroid.testInstrumentationRunnerArguments.COLOR="$color" \
         -Pandroid.testInstrumentationRunnerArguments.DARKMODE="$darkMode" </dev/null > /dev/null \
         && scripts/deleteOutdatedComments.sh "$1-$darkMode-$color" "Screenshot" "$DRONE_PULL_REQUEST" \
