@@ -16,13 +16,21 @@ jobs:
                 with:
                     java-version: 1.8
             -   name: Build gplay
+                env:
+                    LOG_USERNAME: ${{ secrets.LOG_USERNAME }}
+                    LOG_PASSWORD: ${{ secrets.LOG_PASSWORD }}
+                    GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+                    GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
                 run: |
-                     mkdir -p $HOME/.gradle
-                     echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError" > $HOME/.gradle/gradle.properties
-                     ./gradlew assembleGplayDebug
+                    mkdir -p $HOME/.gradle
+                    echo "org.gradle.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError" > $HOME/.gradle/gradle.properties
+                    ./gradlew assembleGplayDebug
             -   name: run tests
                 uses: reactivecircus/android-emulator-runner@v2
                 with:
                     api-level: 29
                     script:
-                        ./gradlew gplayDebugExecuteScreenshotTests -Pandroid.testInstrumentationRunnerArguments.annotation=com.owncloud.android.utils.ScreenshotTest
+                        ./gradlew gplayDebugExecuteScreenshotTests \
+                        -Pandroid.testInstrumentationRunnerArguments.annotation=com.owncloud.android.utils.ScreenshotTest \ ||
+                        scripts/uploadReport.sh "$LOG_USERNAME" "$LOG_PASSWORD" ${{github.event.number}} \
+                        "test" "Screenshot" ${{github.event.number}} "$GIT_USERNAME" "$GIT_TOKEN"
